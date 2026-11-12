@@ -1,7 +1,8 @@
 import os
 
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+
 class Config:
-    # Local (por defecto) o la nube si existe DATABASE_URL
     USER = 'root'
     PASSWORD = ''
     HOST = 'localhost'
@@ -14,8 +15,9 @@ class Config:
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    # Aiven exige conexión segura (SSL)
     if os.environ.get("DATABASE_URL"):
         SQLALCHEMY_ENGINE_OPTIONS = {
-            "connect_args": {"ssl": {"ca": os.environ.get("SSL_CA", "ca.pem")}}
+            "connect_args": {
+                "ssl": {"ca": os.environ.get("SSL_CA", os.path.join(BASE_DIR, "ca.pem"))}
+            }
         }
