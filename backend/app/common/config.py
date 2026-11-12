@@ -5,7 +5,7 @@ class Config:
     USER = 'root'
     PASSWORD = ''
     HOST = 'localhost'
-    DATABASE = 'db_productos'
+    DATABASE = 'db_products'
 
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         "DATABASE_URL",
